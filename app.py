@@ -5,11 +5,22 @@ from logic.team_generator import generate_teams
 from export.csv_export import export_to_csv
 from export.pdf_export import generate_pdf
 from utils.zodiac import sign_elements
-
+# Page Configuration
 st.set_page_config(page_title="AstroTeam IA", layout="centered")
-st.image("assets/demarcheursITLogo.png", use_column_width=True)
 st.title("🔮 Générateur d'équipes compatibles astrologiquement")
 
+
+# Affichage du logo
+st.markdown(
+    """
+    <div style='text-align: center;'>
+        <img src='assets/banner_astro.png' width='600'/>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# Formulaire pour l'ajout de profil
 with st.form("formulaire"):
     nom = st.text_input("Nom complet")
     signe = st.selectbox("Signe zodiaque", list(sign_elements.keys()))
@@ -28,6 +39,7 @@ with st.form("formulaire"):
 
 st.divider()
 
+ #Génération des équipes compatibles
 if st.button("🚀 Former les équipes compatibles"):
     profils = get_all_profils()
     groupes = generate_teams(profils)
@@ -37,8 +49,10 @@ if st.button("🚀 Former les équipes compatibles"):
         for membre in groupe:
             st.markdown(f"- {membre['nom']} ({membre['zodiac']} – {membre['element']})")
 
+    # Export CSV
     csv_data = export_to_csv(groupes)
     st.download_button("📥 Télécharger CSV", csv_data, "equipes.csv", "text/csv")
-
+    
+     # Export PDF
     pdf_data = generate_pdf(groupes)
     st.download_button("📄 Télécharger PDF", pdf_data, "equipes.pdf", "application/pdf")
