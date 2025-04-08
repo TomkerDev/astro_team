@@ -1,6 +1,6 @@
 # app.py
 import streamlit as st
-from database.db import get_all_profils, save_profil
+from database.db import save_profil, connect, get_all_profils
 from logic.team_generator import generate_teams
 from export.csv_export import export_to_csv
 from export.pdf_export import generate_pdf

@@ -11,7 +11,7 @@ def connect():
     )
 
 
-    def save_profil(nom, signe, competences):
+def save_profil(nom, signe, competences):
     # Nettoyage des champs
         nom = nom.strip().title()
         signe = signe.strip().title()
@@ -42,3 +42,5 @@ def get_all_profils():
         {"nom": r[0], "zodiac": r[1], "competences": r[2]} for r in rows
     ]
     
+
+__all__ = ['save_profil', 'connect', 'get_all_profils', ...]  # si tu veux tout lister proprement (optionnel)
