@@ -7,6 +7,7 @@ from export.pdf_export import generate_pdf
 from utils.zodiac import sign_elements
 
 st.set_page_config(page_title="AstroTeam IA", layout="centered")
+st.image("assets/demarcheursITLogo.png", use_column_width=True)
 st.title("🔮 Générateur d'équipes compatibles astrologiquement")
 
 with st.form("formulaire"):
