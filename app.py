@@ -16,8 +16,14 @@ with st.form("formulaire"):
     submit = st.form_submit_button("Ajouter le profil")
 
     if submit:
-        save_profil(nom, signe, competences)
-        st.success("✅ Profil ajouté avec succès !")
+        if nom.strip() and competences.strip():
+            result = save_profil(nom, signe, competences)
+            if result == "exists":
+                st.warning("⚠️ Ce profil existe déjà dans la base.")
+            else:
+                st.success("✅ Profil ajouté avec succès !")
+        else:
+            st.warning("❗ Veuillez remplir tous les champs avant de valider.")
 
 st.divider()
 
